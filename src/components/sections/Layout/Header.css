@@ -1,0 +1,29 @@
+.backgournd-image {
+  /* background-image: url("https://img.freepik.com/premium-photo/driver-car-sea-summer_261642-133.jpg?w=900"); */
+  background-image: url("https://img.freepik.com/premium-photo/driver-car-sea-summer_261642-133.jpg?w=900"),
+    linear-gradient(#0789f3, rgba(250, 246, 246, 0.5));
+  background-blend-mode: overlay;
+  background-repeat: no-repeat;
+  height: 85vh;
+  background-position: center;
+  background-size: cover;
+  background-blend-mode: multiply;
+}
+
+.single-bg:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: linear-gradient(
+    to top,
+    #1879ca 80%,
+    #1879ca 60%,
+    #1879ca 30%,
+    #1879ca 30%
+  );
+  background-blend-mode: multiply;
+  opacity: 0.05;
+}

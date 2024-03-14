@@ -1,0 +1,8 @@
+.bg-button {
+  background-color: #c11d38;
+  background-image: linear-gradient(315deg, #c11d38 0%, #ffc857 100%);
+}
+
+.shadcn-dropdown-arrow lucide-chevron-down {
+  display: none;
+}

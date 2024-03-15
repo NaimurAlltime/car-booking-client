@@ -11,7 +11,9 @@ const Header = () => {
           <h2 className="text-center text-white font-semibold text-2xl mb-5">
             Trusted matrimony & Matchmaking Service
           </h2>
-          <BannerCard />
+          <div className="md:px-0 px-4">
+            <BannerCard />
+          </div>
         </div>
       </div>
     </div>

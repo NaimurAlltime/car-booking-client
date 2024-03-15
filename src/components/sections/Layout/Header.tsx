@@ -16,8 +16,8 @@ const Header = () => {
     <div className="backgournd-image bg-center single-bg bg-no-repeat bg-cover w-full">
       <div className="w-full h-[585px] bg-banner-bg bg-center bg-no-repeat object-bottom">
         <Navbar />
-        <div className="justify-center md:mt-[210px] mt-[45px] pb-20 max-w-screen-lg mx-auto">
-          <h2 className="text-center mx-3 md:mx-0 text-white font-semibold text-[22px] mb-8 md:mb-14">
+        <div className="justify-center md:mt-[208px] mt-[45px] pb-20 max-w-screen-lg mx-auto">
+          <h2 className="text-center md:leading-relaxed font-sans mx-3 md:mx-0 text-white font-semibold text-[22px] md:text-[23px] mb-8 md:mb-14">
             Affordable Car Rentals: Drive Your Way to Convenience and Savings
             <br />
             Today!" Car Rental -Search, Compare & Save

@@ -21,7 +21,7 @@ const Navbar: React.FC = () => {
               className="text-white"
             />
 
-            <h1 className="text-xl md:text-2xl font-semibold ms-2">
+            <h1 className="text-xl font-sans md:text-2xl ms-2 font-semibold">
               Car Renter
             </h1>
           </div>

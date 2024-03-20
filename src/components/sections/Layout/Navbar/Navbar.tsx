@@ -6,6 +6,7 @@ import "./Banner.css";
 import logo from "../../../../app/rental-car.png";
 import { Button } from "antd";
 import en from "../../../../app/en-flag.svg";
+import HeaderDropdown from "../HeaderDropdown";
 
 const Navbar: React.FC = () => {
   return (
@@ -22,7 +23,7 @@ const Navbar: React.FC = () => {
             />
 
             <h1 className="text-xl font-sans md:text-2xl ms-2 font-semibold">
-              Car Renter
+              SHR Car Rental
             </h1>
           </div>
 
@@ -39,13 +40,7 @@ const Navbar: React.FC = () => {
             style={{ borderRadius: "100px" }}
             className="flex items-center justify-center font-semibold"
           >
-            <Image
-              src={en}
-              alt="Picture of the author"
-              width={40}
-              height={40}
-              className="text-white"
-            />
+            <HeaderDropdown />
           </div>
           <div className="items-center hidden md:flex justify-center font-semibold">
             <Button>Manage Booking</Button>

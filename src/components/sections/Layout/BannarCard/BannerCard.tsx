@@ -45,7 +45,7 @@ function BannerCard() {
         </div>
       </div>
       <div className="flex md:flex-none gap-3 justify-center items-center mt-3 md:mt-0">
-        <button className="bg-button mx-auto py-4 px-36 md:px-8 text-white rounded-md">
+        <button className="bg-[#068323] mx-auto py-4 px-36 md:px-8 text-white rounded-md">
           Search
         </button>
       </div>

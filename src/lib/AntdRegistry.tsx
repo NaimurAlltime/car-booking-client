@@ -14,7 +14,7 @@ const StyledComponentsRegistry = ({ children }: React.PropsWithChildren) => {
       <ConfigProvider
         theme={{
           token: {
-            colorPrimary: "red",
+            colorPrimary: "#3A88CB",
             fontSize: 16,
             fontFamily: "Noto Sans, sans-serif",
           },

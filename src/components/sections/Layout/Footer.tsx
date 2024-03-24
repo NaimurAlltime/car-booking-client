@@ -1,23 +1,23 @@
+import { Link } from "@/lib/router-events";
 import Image from "next/image";
-import logo from "../../../app/car-rent.png";
 
 const Footer = () => {
   return (
     <div>
       <footer className="bg-[rgba(0,0,0,255)] mt-16">
-        <div className="max-w-7xl mx-auto py-10 px-4 sm:px-6 lg:px-8 lg:pt-20 mx-auhref">
+        <div className="container px-5 mx-auto py-5 md:py-10">
           {/* <!-- Grid --> */}
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6">
             <div className="col-span-full lg:col-span-1">
               <a
                 className="flex-none text-xl font-semibold text-white"
-                href="#"
+                href="/"
                 aria-label="Brand"
               >
                 <div className="flex-none justify-center items-center">
                   <Image
-                    src={logo}
-                    alt="Picture of the author"
+                    src="/imgs/car-rent.png"
+                    alt="car-rental-logo"
                     width={45}
                     height={45}
                     className="text-white ms-10"
@@ -40,45 +40,45 @@ const Footer = () => {
 
               <div className="mt-3 grid space-y-3">
                 <p>
-                  <a
-                    href="#"
+                  <Link
+                    href="/"
                     className="inline-flex gap-x-2 text-gray-400 hover:text-gray-200"
                   >
                     Member Login
-                  </a>
+                  </Link>
                 </p>
                 <p>
-                  <a
+                  <Link
                     href="/#"
                     className="inline-flex gap-x-2 text-gray-400 hover:text-gray-200"
                   >
                     Sign Up
-                  </a>
+                  </Link>
                 </p>
 
                 <p>
-                  <a
-                    href="#"
+                  <Link
+                    href="/"
                     className="inline-flex gap-x-2 text-gray-400 hover:text-gray-200"
                   >
                     Premium Memberships
-                  </a>
+                  </Link>
                 </p>
                 <p>
-                  <a
-                    href="#"
+                  <Link
+                    href="/"
                     className="inline-flex gap-x-2 text-gray-400 hover:text-gray-200"
                   >
                     Customer Support
-                  </a>
+                  </Link>
                 </p>
                 <p>
-                  <a
-                    href="#"
+                  <Link
+                    href="/"
                     className="inline-flex gap-x-2 text-gray-400 hover:text-gray-200"
                   >
                     Partner Search
-                  </a>
+                  </Link>
                 </p>
               </div>
             </div>
@@ -89,44 +89,44 @@ const Footer = () => {
 
               <div className="mt-3 grid space-y-3">
                 <p>
-                  <a
+                  <Link
+                    href="/about-us"
+                    className="inline-flex gap-x-2 text-gray-400 hover:text-gray-200"
+                  >
+                    Reservation
+                  </Link>
+                </p>
+                <p>
+                  <Link
                     href="/about-us"
                     className="inline-flex gap-x-2 text-gray-400 hover:text-gray-200"
                   >
                     About us
-                  </a>
+                  </Link>
                 </p>
                 <p>
-                  <a
+                  <Link
                     href="/contact-us"
                     className="inline-flex gap-x-2 text-gray-400 hover:text-gray-200"
                   >
                     Contact us
-                  </a>
+                  </Link>
                 </p>
                 <p>
-                  <a
+                  <Link
                     className="inline-flex gap-x-2 text-gray-400 hover:text-gray-200"
-                    href="#"
+                    href="/"
                   >
                     Blog
-                  </a>
+                  </Link>
                 </p>
                 <p>
-                  <a
+                  <Link
                     className="inline-flex gap-x-2 text-gray-400 hover:text-gray-200"
-                    href="#"
+                    href="/"
                   >
-                    Awards & Recognition
-                  </a>{" "}
-                </p>
-                <p>
-                  <a
-                    className="inline-flex gap-x-2 text-gray-400 hover:text-gray-200"
-                    href="#"
-                  >
-                    Success Stories
-                  </a>
+                    Services
+                  </Link>{" "}
                 </p>
               </div>
             </div>
@@ -137,46 +137,46 @@ const Footer = () => {
 
               <div className="mt-3 grid space-y-3">
                 <p>
-                  <a
-                    href="#"
+                  <Link
+                    href="/"
                     className="inline-flex gap-x-2 text-gray-400 hover:text-gray-200"
                   >
                     Terms of Use
-                  </a>
+                  </Link>
                 </p>
 
                 <p>
-                  <a
+                  <Link
                     href="/#"
                     className="inline-flex gap-x-2 text-gray-400 hover:text-gray-200"
                   >
                     Privacy Policy
-                  </a>
+                  </Link>
                 </p>
 
                 <p>
-                  <a
-                    href="#"
+                  <Link
+                    href="/"
                     className="inline-flex gap-x-2 text-gray-400 hover:text-gray-200"
                   >
                     Be Safe Online
-                  </a>
+                  </Link>
                 </p>
                 <p>
-                  <a
-                    href="#"
+                  <Link
+                    href="/"
                     className="inline-flex gap-x-2 text-gray-400 hover:text-gray-200"
                   >
                     Report Misuse
-                  </a>
+                  </Link>
                 </p>
                 <p>
-                  <a
-                    href="#"
+                  <Link
+                    href="/"
                     className="inline-flex gap-x-2 text-gray-400 hover:text-gray-200"
                   >
-                    Partner Search
-                  </a>
+                    Car Search
+                  </Link>
                 </p>
               </div>
             </div>
@@ -187,46 +187,46 @@ const Footer = () => {
 
               <div className="mt-3 grid space-y-3">
                 <p>
-                  <a
-                    href="#"
+                  <Link
+                    href="/"
                     className="inline-flex gap-x-2 text-gray-400 hover:text-gray-200"
                   >
-                    WOW Couple Center
-                  </a>
+                    Car Booking Center
+                  </Link>
                 </p>
 
                 <p>
-                  <a
+                  <Link
                     href="/#"
                     className="inline-flex gap-x-2 text-gray-400 hover:text-gray-200"
                   >
                     Success Stories
-                  </a>
+                  </Link>
                 </p>
 
                 <p>
-                  <a
-                    href="#"
+                  <Link
+                    href="/"
                     className="inline-flex gap-x-2 text-gray-400 hover:text-gray-200"
                   >
-                    WOW Couple Live
-                  </a>
+                    Rent Car Preview
+                  </Link>
                 </p>
                 <p>
-                  <a
-                    href="#"
+                  <Link
+                    href="/"
                     className="inline-flex gap-x-2 text-gray-400 hover:text-gray-200"
                   >
                     Site map
-                  </a>
+                  </Link>
                 </p>
                 <p>
-                  <a
-                    href="#"
+                  <Link
+                    href="/"
                     className="inline-flex gap-x-2 text-gray-400 hover:text-gray-200"
                   >
-                    Partner Search
-                  </a>
+                    Loaction Search
+                  </Link>
                 </p>
               </div>
             </div>

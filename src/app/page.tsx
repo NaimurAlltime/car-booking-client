@@ -1,15 +1,20 @@
 import PublicLayout from "@/components/layout/PublicLayout";
-import Car from "@/components/sections/Home/Car";
-import Footer from "@/components/sections/Layout/Footer";
-import Header from "@/components/sections/Layout/Header";
-import { Button } from "antd";
+import AboutUs from "@/components/sections/Home/AboutUs/AboutUs";
+import HomeBanner from "@/components/sections/Home/Banner/HomeBanner";
+import Car from "@/components/sections/Home/CarSection/Car";
+import Choose from "@/components/sections/Home/ChooseUs/Choose";
+import Contact from "@/components/sections/Home/Contact/Contact";
 
 export default function Home() {
   return (
     <main>
-      <Header />
-      <Car />
-      <Footer />
+      <PublicLayout>
+        <HomeBanner />
+        <Choose />
+        <Car />
+        <AboutUs />
+        <Contact />
+      </PublicLayout>
     </main>
   );
 }

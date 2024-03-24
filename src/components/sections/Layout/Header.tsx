@@ -1,43 +1,71 @@
 "use client";
-import BannerCard from "./BannarCard/BannerCard";
-import Navbar from "./Navbar/Navbar";
-import "./Header.css";
-import { FaCheck } from "react-icons/fa6";
-import React from "react";
-import { Checkbox } from "antd";
-import type { CheckboxProps } from "antd";
+import { Link } from "@/lib/router-events";
+import { Button } from "antd";
+import Image from "next/image";
+import { useEffect, useState } from "react";
+import { FaPersonBreastfeeding } from "react-icons/fa6";
+import { IoIosArrowDown } from "react-icons/io";
+import HeaderDropdown from "./HeaderDropdown";
 
-const onChange: CheckboxProps["onChange"] = (e) => {
-  console.log(`checked = ${e.target.checked}`);
-};
-
-const Header = () => {
+const Header: React.FC = () => {
+  const [isTop, setIsTop] = useState(true);
+  const controlNavbar = () => {
+    if (window.scrollY > 100) {
+      setIsTop(false);
+    } else {
+      setIsTop(true);
+    }
+  };
+  console.log(isTop);
+  useEffect(() => window.addEventListener("scroll", controlNavbar), []);
   return (
-    <div className="backgournd-image bg-center single-bg bg-no-repeat bg-cover w-full">
-      <div className="w-full h-[585px] bg-banner-bg bg-center bg-no-repeat object-bottom">
-        <Navbar />
-        <div className="justify-center md:mt-[208px] mt-[45px] pb-20 max-w-screen-lg mx-auto">
-          <h2 className="text-center md:leading-relaxed font-sans mx-3 md:mx-0 text-white font-semibold text-[22px] md:text-[23px] mb-8 md:mb-14">
-            Affordable Car Rentals: Drive Your Way to Convenience and Savings
-            <br />
-            Today!" Car Rental -Search, Compare & Save
-          </h2>
-          <div className="md:px-0 px-4">
-            <BannerCard />
-          </div>
-          <div className="text-xl ms-6 md:ms-0 font-semibold mt-3 md:flex flex-none gap-5 items-center justify-center">
+    <div className={`w-full fixed top-0 z-50   ${isTop ? "bg-primary bg-opacity-10" : "bg-white shadow-md"}`}>
+      <div className=" h-full container px-5 mx-auto py-2 md:py-5 flex items-center justify-between">
+        <div className="flex gap-10 items-center justify-center ">
+          <Link href="/" className="flex justify-center items-center">
+            <Image
+              src="/imgs/rental-car.png"
+              alt=""
+              width={45}
+              height={45}
+              className="text-white"
+            />
+            <h1 className="text-xl font-sans md:text-2xl ms-2 font-semibold">
+              SHR Car Rental
+            </h1>
+          </Link>
+
+          <Link
+            href="/"
+            className="hidden group md:flex items-center justify-center font-semibold"
+          >
             <div>
-              <Checkbox onChange={onChange}>
-                <span className="text-white">
-                  Drop car off diffrect location
-                </span>
-              </Checkbox>
+              <FaPersonBreastfeeding className="text-2xl border border-gray-400 mr-2 p-[3px] rounded-full" />
             </div>
-            <div className="md:ms-10">
-              <Checkbox onChange={onChange}>
-                <span className="text-white">Driver aged 30 - 65?</span>
-              </Checkbox>
-            </div>
+            <p className="mr-1 group-hover:underline">Help</p>
+            <IoIosArrowDown />
+          </Link>
+          <div className="md:ms-20">
+            <Link className="group-hover:underline font-semibold ms-4">
+              Reservation
+            </Link>
+            <Link className="group-hover:underline font-semibold ms-5">
+              About Us
+            </Link>
+            <Link className="group-hover:underline font-semibold ms-5">
+              Contacts
+            </Link>
+          </div>
+        </div>
+        <div className="flex gap-10">
+          <div className="flex items-center justify-center font-semibold">
+            <HeaderDropdown />
+            <h2 className="">EN</h2>
+          </div>
+          <div className="items-center hidden md:flex justify-center font-semibold">
+            <Button size="large" type={!isTop ? "primary" : undefined}>
+              Manage Booking
+            </Button>
           </div>
         </div>
       </div>

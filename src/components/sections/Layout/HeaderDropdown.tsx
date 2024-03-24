@@ -1,7 +1,5 @@
 import { Button, Dropdown, MenuProps } from "antd";
 import Image from "next/image";
-import en from "../../../app/en-flag.svg";
-import fn from "../../../app/Flag_of_France.svg";
 
 const items: MenuProps["items"] = [
   {
@@ -9,7 +7,7 @@ const items: MenuProps["items"] = [
     label: (
       <div className="flex gap-5 ">
         <Image
-          src={en}
+          src="/svgs/en-flag.svg"
           alt=""
           width={40}
           height={40}
@@ -24,7 +22,7 @@ const items: MenuProps["items"] = [
     label: (
       <div className="flex gap-5 ">
         <Image
-          src={fn}
+          src="/svgs/en-flag.svg"
           alt=""
           width={40}
           height={40}
@@ -47,17 +45,14 @@ const HeaderDropdown = () => {
         className="gap-5"
         rootClassName="z-40"
       >
-        <Button type="text" className="">
-          <div className="flex gap-2 justify-center items-center">
-            <Image
-              src={en}
-              alt=""
-              width={40}
-              height={40}
-              className="rounded-sm cursor-pointer"
-            />
-            <h2 className="text-white">EN</h2>
-          </div>
+        <Button type="text">
+          <Image
+            src="/svgs/en-flag.svg"
+            alt=""
+            width={40}
+            height={40}
+            className="rounded-sm cursor-pointer"
+          />
         </Button>
       </Dropdown>
     </div>

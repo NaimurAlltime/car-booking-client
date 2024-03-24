@@ -15,7 +15,7 @@ export default function RootLayout({ children, session }: { children: ReactNode;
     <html lang="en">
       <body>
         <Providers session={session}>
-          <NProgressBar color="#BABD92" height={3} />
+          <NProgressBar color="#3A88CB" height={3} />
           {children}
         </Providers>
       </body>

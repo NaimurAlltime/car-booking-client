@@ -13,5 +13,5 @@ export const envConfig: EnvConfig = {
     expiresIn: process.env.JWT_EXPIRES_IN || "1d",
   },
   siteUrl: process.env.NEXT_PUBLIC_NEXTAUTH_URL || "http://localhost:3000",
-  backendUrl: process.env.NEXT_PUBLIC_BACKEND_URL || "",
+  backendUrl: process.env.NEXT_PUBLIC_BACKEND_URL || "/",
 };

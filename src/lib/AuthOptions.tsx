@@ -1,6 +1,7 @@
 import { login_credential } from "@/constants/credentialId";
 import { envConfig } from "@/helpers/config/envConfig";
 import { jwtHelpers } from "@/helpers/jwthelpers/jwthelpers";
+import { loginWithCredential } from "@/redux/features/auth/auth.api";
 import { CallbacksOptions, NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { Provider } from "next-auth/providers/index";
@@ -19,24 +20,22 @@ const providers: Provider[] = [
           throw new Error("please enter email or password");
         }
 
-        const { data }  = {} as any // await loginWithCredential({ email, password });
+        const response = await loginWithCredential({ email, password });
 
-        const verifiedToken: any = jwtHelpers.verifyToken(data?.accessToken, envConfig.jwt.secret);
+        const verifiedToken: any = jwtHelpers.verifyToken(response?.data?.accessToken, envConfig.jwt.secret);
         // If no error and we have user data, return it
-        if (data?.accessToken && verifiedToken) {
+        if (response?.data?.accessToken && verifiedToken) {
           return {
-            id: verifiedToken?.userId,
-            accessToken: data?.accessToken,
+            id: verifiedToken?.id,
+            accessToken: response?.data?.accessToken,
             user: {
-              userId: verifiedToken?.userId,
-              username: verifiedToken?.username,
+              userId: verifiedToken?.id,
               email: verifiedToken?.email,
-              role: verifiedToken?.role,
             },
           };
         }
 
-        throw new Error(data?.error?.message || "Something went wrong");
+        throw new Error(response?.error?.message || "Something went wrong");
       } catch (error: any) {
         throw new Error(error?.message || "Something went wrong");
       }
@@ -75,5 +74,5 @@ export const auth_options: NextAuthOptions = {
   callbacks,
   pages: { signIn: "/login", signOut: "*", error: "/" },
   secret: envConfig.jwt.secret,
-  jwt: { maxAge:  60 * 60 * 24 * 1 }, //default
+  jwt: { maxAge: 60 * 60 * 24 * 1 }, //default
 };

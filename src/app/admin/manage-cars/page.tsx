@@ -4,8 +4,8 @@ import BreadCrumb from "@/components/common/Breadcrumb";
 import Table from "@/components/common/Table";
 import { useDebounced } from "@/hooks/useDebounced";
 import { Link, useRouter } from "@/lib/router-events";
-import { getLocations, useDeleteLocationMutation, useGetLocationsQuery } from "@/redux/features/location/location.api";
-import { ILocation } from "@/types/ApiResponse";
+import { getCars, useDeleteCarMutation, useGetCarsQuery } from "@/redux/features/car/car.api";
+import { ICar } from "@/types/ApiResponse";
 import { Button, Input, Modal, TableColumnProps, message } from "antd";
 import { useSession } from "next-auth/react";
 import { useState } from "react";
@@ -13,9 +13,9 @@ import { AiOutlineReload } from "react-icons/ai";
 import { useCSVDownloader } from "react-papaparse";
 const { confirm } = Modal;
 
-const ManageLocationPage = () => {
+const ManageCarPage = () => {
   const { CSVDownloader, Type } = useCSVDownloader();
-  const [csvJson, setCsvJson] = useState<ILocation[]>([] as ILocation[]);
+  const [csvJson, setCsvJson] = useState<ICar[]>([] as ICar[]);
   const { data: session } = useSession();
   const query: Record<string, any> = {};
   const router = useRouter();
@@ -38,29 +38,34 @@ const ManageLocationPage = () => {
     query["searchKey"] = debouncedTerm;
   }
 
-  const [deleteLocation] = useDeleteLocationMutation();
-  const { data, isLoading } = useGetLocationsQuery(
-    { params: { ...query, populate: "cars" } },
+  const [deleteCar] = useDeleteCarMutation();
+  const { data, isLoading } = useGetCarsQuery(
+    { params: { ...query, populate: "location-locations" } },
     {
       refetchOnMountOrArgChange: true,
       skip: !session?.accessToken,
     }
   );
 
-  const locations = data?.locations;
+  const cars = data?.cars;
   const meta = data?.meta;
 
   const columns: TableColumnProps<any>[] = [
     {
-      title: "Name",
-      dataIndex: "name",
+      title: "Title",
+      dataIndex: "title",
     },
     {
-      title: "Number of Cars",
-      dataIndex: "cars",
-      render: function (data: any[]) {
-        return <div className="flex justify-center items-center">{data?.length}</div>;
+      title: "Location",
+      dataIndex: "location",
+      render: function (data: any) {
+        return <div>{data[0]?.name}</div>;
       },
+    },
+    {
+      title: "Seats",
+      dataIndex: "seats",
+      sorter: true,
     },
     {
       title: "Action",
@@ -69,13 +74,13 @@ const ManageLocationPage = () => {
       render: function (data: string) {
         return (
           <div className="flex justify-center items-center gap-5">
-            <Button size="small" onClick={() => router.push(`/admin/manage-location/details/${data}`)}>
+            <Button size="small" onClick={() => router.push(`/admin/manage-cars/details/${data}`)}>
               view
             </Button>
-            <Button size="small" onClick={() => router.push(`/admin/manage-location/edit/${data}`)}>
+            <Button size="small" onClick={() => router.push(`/admin/manage-cars/edit/${data}`)}>
               edit
             </Button>
-            <Button size="small" onClick={() => showDeleteLocationModal(data)}>
+            <Button size="small" onClick={() => showDeleteCarModal(data)}>
               Delete
             </Button>
           </div>
@@ -84,23 +89,23 @@ const ManageLocationPage = () => {
     },
   ];
 
-  const showDeleteLocationModal = (data: string) => {
+  const showDeleteCarModal = (data: string) => {
     confirm({
-      title: "Are you sure delete this location?",
+      title: "Are you sure delete this car?",
       content: "Press 'Yes' to delete or 'No' to back to previous page",
       okText: "Yes",
       okType: "danger",
       cancelText: "No",
       onOk() {
-        handleDeleteLocation(data);
+        handleDeleteCar(data);
       },
     });
   };
 
-  const handleDeleteLocation = async (id: string) => {
+  const handleDeleteCar = async (id: string) => {
     message.loading("Deleting.....");
     try {
-      const res = await deleteLocation({ id });
+      const res = await deleteCar({ id });
       if (!!res) {
         message.destroy();
       }
@@ -130,16 +135,16 @@ const ManageLocationPage = () => {
 
   const generateCSV = async () => {
     message.loading({ content: "Generating CSV...", key: "csv" });
-    const csvData = await getLocations({});
-    setCsvJson(csvData.locations);
+    const csvData = await getCars({});
+    setCsvJson(csvData.cars);
     message.success({ content: "CSV Generated", key: "csv" });
   };
 
   return (
     <div>
-      <ActionBar title="Manage Location">
+      <ActionBar title="Manage Car">
         <div className="flex md:flex-row flex-col gap-5 md:gap-0  justify-between items-center">
-          <BreadCrumb items={[{ label: "Management" }, { label: "Location" }]} />
+          <BreadCrumb items={[{ label: "Management" }, { label: "Car" }]} />
           <div className="w-full md:w-1/4">
             <Input
               type="text"
@@ -153,12 +158,12 @@ const ManageLocationPage = () => {
           </div>
         </div>
         <div>
-          <Link href="/admin/manage-location/create">
-            <Button type="primary">Add Location</Button>
+          <Link href="/admin/manage-cars/create">
+            <Button type="primary">Add Car</Button>
           </Link>
 
           {csvJson.length > 0 ? (
-            <CSVDownloader type={Type.Link} filename={"location"} bom={true} data={csvJson}>
+            <CSVDownloader type={Type.Link} filename={"car"} bom={true} data={csvJson}>
               <Button style={{ margin: "0px 5px" }} type="primary">
                 Download CSV
               </Button>
@@ -179,7 +184,7 @@ const ManageLocationPage = () => {
       <Table
         loading={isLoading}
         columns={columns}
-        dataSource={locations}
+        dataSource={cars}
         pageSize={size}
         totalPages={meta?.total}
         showSizeChanger={true}
@@ -191,4 +196,4 @@ const ManageLocationPage = () => {
   );
 };
 
-export default ManageLocationPage;
+export default ManageCarPage;

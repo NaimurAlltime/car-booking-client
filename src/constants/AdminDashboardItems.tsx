@@ -27,8 +27,8 @@ export const adminMenuItems: MenuItem[] = [
         key: `/admin/manage-location`,
       },
       {
-        label: <Link href={`/admin/quotation-given`}>Manage Cars</Link>,
-        key: `/admin/quotation-given`,
+        label: <Link href={`/admin/manage-cars`}>Manage Cars</Link>,
+        key: `/admin/manage-cars`,
       },
     ],
   },

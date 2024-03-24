@@ -20,7 +20,7 @@ const ContactMessage = () => {
       Purpose: Purpose,
       Message: Message,
     };
-    console.log(addMessage);
+   
     // data fetching post api
     fetch("/api/contactapi/", {
       method: "POST",
@@ -31,7 +31,7 @@ const ContactMessage = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+      
         Swal.fire({
           position: "top-end",
           icon: "success",

@@ -11,7 +11,6 @@ import { CiSearch } from "react-icons/ci";
 
 const HomeBanner = () => {
   const onChange: CheckboxProps["onChange"] = (e) => {
-    console.log(`checked = ${e.target.checked}`);
   };
   return (
     <div>

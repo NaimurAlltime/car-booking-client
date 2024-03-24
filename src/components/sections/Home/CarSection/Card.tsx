@@ -28,7 +28,6 @@ const Card = ({ card }: CardTProps) => {
     system,
     image,
   } = card;
-  console.log(card);
   return (
     <div className="bg-white px-5 border border-gray-200 rounded-md py-6 uppercase text-[#473C6B] hover:shadow-lg">
       <div className="flex justify-between gap-2">

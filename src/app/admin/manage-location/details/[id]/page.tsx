@@ -36,9 +36,9 @@ const LocationDetailsPage = () => {
             <Typography.Text className="w-3/5">{location?.name}</Typography.Text>
           </List.Item>
           <List.Item>
-            <Typography.Text strong>Available Cars: </Typography.Text>
+            <Typography.Text strong>Number of Cars: </Typography.Text>
             <Typography.Text className="w-3/5">
-              <span className="cursor-pointer text-blue-400 underline">view</span>
+              <span className="cursor-pointer text-blue-400 underline">{location?.cars?.length}</span>
             </Typography.Text>
           </List.Item>
         </List>

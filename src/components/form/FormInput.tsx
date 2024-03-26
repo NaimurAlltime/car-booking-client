@@ -15,7 +15,7 @@ interface IInput {
   required?: boolean;
 }
 
-const FormInput = ({ name, type, size = "small", value, id, placeholder, validation, label, required , style }: IInput & InputProps) => {
+const FormInput = ({ name, type, size = "small", value, id, placeholder, validation, label, required , style  }: IInput & InputProps) => {
   const {
     control,
     formState: { errors },

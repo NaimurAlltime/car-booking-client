@@ -1,4 +1,5 @@
 import { getErrorMessageByPropertyName } from "@/utils/Form/schemaValidator";
+import { CSSProperties } from "@ant-design/cssinjs/lib/hooks/useStyleRegister";
 import { Checkbox } from "antd";
 import { Controller, useFormContext } from "react-hook-form";
 
@@ -7,10 +8,11 @@ type CheckboxFieldProps = {
   label?: string;
   defaultValue?: boolean;
   loading?: boolean;
+  style?: CSSProperties;
   handleChange?: (checked: boolean) => void;
 };
 
-const FormCheckboxField = ({ name, label, defaultValue, handleChange }: CheckboxFieldProps) => {
+const FormCheckboxField = ({ name, label, defaultValue, style, handleChange }: CheckboxFieldProps) => {
   const {
     control,
     formState: { errors },
@@ -40,6 +42,7 @@ const FormCheckboxField = ({ name, label, defaultValue, handleChange }: Checkbox
               field.onChange(e.target.checked);
               onCheckboxChange(e);
             }}
+            style={style as any}
           >
             {label}
           </Checkbox>

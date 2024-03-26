@@ -1,15 +1,15 @@
 "use client";
 import { TimePicker } from "antd";
-import React from "react";
-import { Controller, useFormContext } from "react-hook-form";
 import dayjs from "dayjs";
+import { Controller, useFormContext } from "react-hook-form";
 
 type FormTimePickerProps = {
   name: string;
   label?: string;
   index?: number;
+  style?: object;
 };
-export default function FormTimePicker({ name, label }: FormTimePickerProps) {
+export default function FormTimePicker({ name, label, style }: FormTimePickerProps) {
   const { control, setValue } = useFormContext();
   return (
     <>
@@ -25,7 +25,7 @@ export default function FormTimePicker({ name, label }: FormTimePickerProps) {
             onChange={(el, value) => {
               setValue(name, value);
             }}
-            style={{ width: "100%" ,  fontSize: "15px", backgroundColor: "#FAFAFA"}}
+            style={{ width: "100%", fontSize: "15px", backgroundColor: "#FAFAFA", ...style }}
           />
         )}
       />

@@ -1,6 +1,7 @@
-import { MdAirlineSeatReclineExtra, MdShoppingBag } from "react-icons/md";
-import { GiBigGear, GiCarDoor, GiComputerFan } from "react-icons/gi";
+import { Button } from "antd";
 import { BsFillFuelPumpDieselFill } from "react-icons/bs";
+import { GiBigGear, GiCarDoor, GiComputerFan } from "react-icons/gi";
+import { MdAirlineSeatReclineExtra, MdShoppingBag } from "react-icons/md";
 
 export type CardTProps = {
   title: string;
@@ -16,18 +17,7 @@ export type CardTProps = {
 };
 
 const Card = ({ card }: CardTProps) => {
-  const {
-    title,
-    subTitle,
-    mad,
-    seats,
-    bags,
-    door,
-    ac,
-    cylinder,
-    system,
-    image,
-  } = card;
+  const { title, subTitle, mad, seats, bags, door, ac, cylinder, system, image } = card;
   return (
     <div className="bg-white px-5 border border-gray-200 rounded-md py-6 uppercase text-[#473C6B] hover:shadow-lg">
       <div className="flex justify-between gap-2">
@@ -85,10 +75,18 @@ const Card = ({ card }: CardTProps) => {
       <div className="text-center">
         <img className="inline w-full h-40" src={image} alt="" />
       </div>
-
-      <button className="text-center uppercase bg-[#F47322] w-full mt-5 text-white rounded-md py-2 text-xl font-semibold">
+      <Button
+        size="large"
+        className="uppercase mt-5 "
+        style={{
+          backgroundColor: "#F47322",
+          color: "white",
+          width: "100%",
+          padding: "0 0.5rem",
+        }}
+      >
         book now
-      </button>
+      </Button>
     </div>
   );
 };

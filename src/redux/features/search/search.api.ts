@@ -12,9 +12,9 @@ const search_url = "/search";
 
 export const searchApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
-    search: builder.query<SearchResult, { params?: IQuery }>({
+    search: builder.query<SearchResult, {id: string; params?: IQuery }>({
       query: (arg) => ({
-        url: search_url,
+        url: search_url + `/${arg.id}`,
         method: "GET",
         params: arg?.params,
       }),
@@ -28,9 +28,9 @@ export const searchApi = baseApi.injectEndpoints({
   }),
 });
 
-export const getSearch = async ({ params }: { params?: IQuery }): Promise<SearchResult> => {
+export const getSearch = async ({ id , params }: { id: string; params?: IQuery }): Promise<SearchResult> => {
   const result = await axiosInstance({
-    url: search_url,
+    url: search_url + `/${id}`,
     method: "GET",
     params,
   });

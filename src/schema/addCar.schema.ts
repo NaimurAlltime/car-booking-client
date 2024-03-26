@@ -26,6 +26,24 @@ const addCarValidation = z.object({
       invalid_type_error: "isAvailable must be a boolean",
     })
     .optional(),
+  featured: z
+    .boolean({
+      invalid_type_error: "featured must be a boolean",
+    })
+    .optional(),
+  category: z
+    .string({
+      required_error: "Category is must required",
+      invalid_type_error: "Category must be a string",
+    })
+    .refine(
+      (data) => {
+        return ["medium", "premium", "small", "large", "SUVs", "People Carrier", "Estate"].includes(data);
+      },
+      {
+        message: "Category must be a medium, premium, small, large, SUVs, People Carrier or Estate",
+      }
+    ),
   seats: z.string({
     required_error: "seats is required",
     invalid_type_error: "seats must be a string",

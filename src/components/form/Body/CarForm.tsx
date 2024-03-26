@@ -114,6 +114,28 @@ const CarForm = () => {
           </Col>
           <Col
             className="gutter-row"
+            span={8}
+            style={{
+              marginBottom: "10px",
+            }}
+          >
+            <FormSelectField
+              name="category"
+              label="Category"
+              size="large"
+              options={[
+                { label: "Medium", value: "medium" },
+                { label: "Premium", value: "premium" },
+                { label: "Small", value: "small" },
+                { label: "Large", value: "large" },
+                { label: "SUVs", value: "SUVs" },
+                { label: "People Carrier", value: "People Carrier" },
+                { label: "Estate", value: "Estate" },
+              ]}
+            />
+          </Col>
+          <Col
+            className="gutter-row"
             span={24}
             style={{
               marginBottom: "10px",
@@ -121,6 +143,7 @@ const CarForm = () => {
           >
             <FormCheckboxField name="ac" label="AC" />
             <FormCheckboxField name="automatic" label="Automatic" />
+            <FormCheckboxField name="featured" label="Featured" />
           </Col>
         </Row>
       </div>

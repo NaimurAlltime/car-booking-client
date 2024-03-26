@@ -40,6 +40,9 @@ const LocationEditPage = () => {
       fuel: data?.car?.fuel,
       ac: data?.car?.ac,
       automatic: data?.car?.automatic,
+      category: data?.car?.category,
+      isAvailable: data?.car?.isAvailable,
+      featured: data?.car?.featured,
     };
     setDefaultValues(defaultValues);
   }, [data]);

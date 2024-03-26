@@ -1,15 +1,24 @@
 import Form from "@/components/form/Form";
 import FormCheckboxField from "@/components/form/FormCheckbox";
-import { Button } from "antd";
+import { useRouter } from "@/lib/router-events";
+import searchValidation from "@/schema/search.schema";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Button, message } from "antd";
+import dayjs from "dayjs";
 import SearchAutoComplete from "./AutoComplete";
 import SearchDatePicker from "./DatePicker";
 import SearchTimePicker from "./TimePicker";
-import { zodResolver } from "@hookform/resolvers/zod";
-import searchValidation from "@/schema/search.schema";
 
 const SearchBox = () => {
+  const router = useRouter();
   const handleSearch = (data: any) => {
-    console.log(data);
+    const pickDate = dayjs(data?.pickDate);
+    const returnDate = dayjs(data?.returnDate);
+    const diff = returnDate.diff(pickDate, "day");
+    console.log(diff);
+    if (diff < 3) return message.info("please select for at least 3 days");
+
+    router.push(`/search-result?${new URLSearchParams(data)}`);
   };
 
   const threeDaysFromNow = new Date();

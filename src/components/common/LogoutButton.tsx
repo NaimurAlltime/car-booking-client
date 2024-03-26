@@ -10,7 +10,7 @@ const LogoutButton = ({ text }: { text?: boolean }) => {
     try {
       await signOut();
       message.destroy();
-      router.push("/login");
+      router.push("/");
     } catch (err: any) {
       message.destroy();
       await signOut();

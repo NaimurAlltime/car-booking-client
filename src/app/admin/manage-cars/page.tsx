@@ -118,6 +118,7 @@ const ManageCarPage = () => {
     });
   };
 
+  // delete car
   const handleDeleteCar = async (id: string) => {
     message.loading("Deleting.....");
     try {

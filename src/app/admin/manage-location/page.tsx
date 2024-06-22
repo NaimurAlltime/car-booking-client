@@ -4,7 +4,11 @@ import BreadCrumb from "@/components/common/Breadcrumb";
 import Table from "@/components/common/Table";
 import { useDebounced } from "@/hooks/useDebounced";
 import { Link, useRouter } from "@/lib/router-events";
-import { getLocations, useDeleteLocationMutation, useGetLocationsQuery } from "@/redux/features/location/location.api";
+import {
+  getLocations,
+  useDeleteLocationMutation,
+  useGetLocationsQuery,
+} from "@/redux/features/location/location.api";
 import { ILocation } from "@/types/ApiResponse";
 import { Button, Input, Modal, TableColumnProps, message } from "antd";
 import { useSession } from "next-auth/react";
@@ -27,7 +31,12 @@ const ManageLocationPage = () => {
 
   query["limit"] = size;
   query["page"] = page;
-  query["sort"] = !!sortBy && !!sortOrder && sortOrder === "asc" ? sortBy : sortOrder === "desc" ? `-${sortBy}` : undefined;
+  query["sort"] =
+    !!sortBy && !!sortOrder && sortOrder === "asc"
+      ? sortBy
+      : sortOrder === "desc"
+      ? `-${sortBy}`
+      : undefined;
 
   const debouncedTerm = useDebounced({
     searchQuery: searchTerm,
@@ -59,7 +68,9 @@ const ManageLocationPage = () => {
       title: "Number of Cars",
       dataIndex: "cars",
       render: function (data: any[]) {
-        return <div className="flex justify-center items-center">{data?.length}</div>;
+        return (
+          <div className="flex justify-center items-center">{data?.length}</div>
+        );
       },
     },
     {
@@ -69,10 +80,18 @@ const ManageLocationPage = () => {
       render: function (data: string) {
         return (
           <div className="flex justify-center items-center gap-5">
-            <Button size="small" onClick={() => router.push(`/admin/manage-location/details/${data}`)}>
+            <Button
+              size="small"
+              onClick={() =>
+                router.push(`/admin/manage-location/details/${data}`)
+              }
+            >
               view
             </Button>
-            <Button size="small" onClick={() => router.push(`/admin/manage-location/edit/${data}`)}>
+            <Button
+              size="small"
+              onClick={() => router.push(`/admin/manage-location/edit/${data}`)}
+            >
               edit
             </Button>
             <Button size="small" onClick={() => showDeleteLocationModal(data)}>
@@ -128,6 +147,7 @@ const ManageLocationPage = () => {
     setSearchTerm("");
   };
 
+  // gemerate csv
   const generateCSV = async () => {
     message.loading({ content: "Generating CSV...", key: "csv" });
     const csvData = await getLocations({});
@@ -139,7 +159,9 @@ const ManageLocationPage = () => {
     <div>
       <ActionBar title="Manage Location">
         <div className="flex md:flex-row flex-col gap-5 md:gap-0  justify-between items-center">
-          <BreadCrumb items={[{ label: "Management" }, { label: "Location" }]} />
+          <BreadCrumb
+            items={[{ label: "Management" }, { label: "Location" }]}
+          />
           <div className="w-full md:w-1/4">
             <Input
               type="text"
@@ -158,18 +180,31 @@ const ManageLocationPage = () => {
           </Link>
 
           {csvJson.length > 0 ? (
-            <CSVDownloader type={Type.Link} filename={"location"} bom={true} data={csvJson}>
+            <CSVDownloader
+              type={Type.Link}
+              filename={"location"}
+              bom={true}
+              data={csvJson}
+            >
               <Button style={{ margin: "0px 5px" }} type="primary">
                 Download CSV
               </Button>
             </CSVDownloader>
           ) : (
-            <Button style={{ margin: "0px 5px" }} type="primary" onClick={generateCSV}>
+            <Button
+              style={{ margin: "0px 5px" }}
+              type="primary"
+              onClick={generateCSV}
+            >
               Generate CSV
             </Button>
           )}
           {(!!sortBy || !!sortOrder || !!searchTerm) && (
-            <Button style={{ margin: "0px 5px" }} type="primary" onClick={resetFilters}>
+            <Button
+              style={{ margin: "0px 5px" }}
+              type="primary"
+              onClick={resetFilters}
+            >
               <AiOutlineReload />
             </Button>
           )}

@@ -18,7 +18,9 @@ const CreateCategoryPage = () => {
       const res = await addLocation({ data }).unwrap();
       if (!!res) {
         message.destroy();
-        message.success("Your request to add location has been sent successful");
+        message.success(
+          "Your request to add location has been sent successful"
+        );
         router.push("/admin/manage-location");
       }
     } catch (err: any) {
@@ -30,14 +32,23 @@ const CreateCategoryPage = () => {
     <div>
       <ActionBar title="Create Location">
         <div className=" ">
-          <BreadCrumb items={[{ label: "Management" }, { label: "Manage Location" }, { label: "Add" }]} />
+          <BreadCrumb
+            items={[
+              { label: "Management" },
+              { label: "Manage Location" },
+              { label: "Add" },
+            ]}
+          />
         </div>
       </ActionBar>
-      <Form submitHandler={submitHandler} resolver={zodResolver(addLocationValidation)}>
+      <Form
+        submitHandler={submitHandler}
+        resolver={zodResolver(addLocationValidation)}
+      >
         <LocationForm />
         <div style={{ marginTop: 24 }}>
           <Button type="primary" htmlType="submit">
-            Create
+            Create Location
           </Button>
         </div>
       </Form>

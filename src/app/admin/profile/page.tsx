@@ -5,6 +5,7 @@ import { Card, List, Typography } from "antd";
 import { useSession } from "next-auth/react";
 
 const Profile = () => {
+  // get user profile
   const { data: session } = useSession();
 
   return (
@@ -16,7 +17,9 @@ const Profile = () => {
         <List>
           <List.Item>
             <Typography.Text strong>Email: </Typography.Text>
-            <Typography.Text className="w-3/5">{session?.user?.email}</Typography.Text>
+            <Typography.Text className="w-3/5">
+              {session?.user?.email}
+            </Typography.Text>
           </List.Item>
           <List.Item>
             <Typography.Text strong>Role: </Typography.Text>

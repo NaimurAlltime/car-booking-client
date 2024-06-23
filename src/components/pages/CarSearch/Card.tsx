@@ -10,6 +10,7 @@ import { MdOutlineEmail } from "react-icons/md";
 const Card = () => {
   return (
     <div className="border rounded-md p-3  ">
+      {/* card design */}
       <div className="lg:flex  gap-2 items-center">
         <div>
           <img

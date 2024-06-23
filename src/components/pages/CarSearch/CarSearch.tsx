@@ -8,7 +8,7 @@ export default function CarSearch() {
   return (
     <Container>
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 py-2">
-        {/* left part of design */}
+        {/* left part of design and google map */}
         <div className="overflow-hidden">
           <Googlemap />
           <Filter />

@@ -1,6 +1,11 @@
 import Cookies from "js-cookie";
 
-export const setToCookie = (key: string, value: string, options?: Cookies.CookieAttributes) => {
+//manage cookies
+export const setToCookie = (
+  key: string,
+  value: string,
+  options?: Cookies.CookieAttributes
+) => {
   if (!key || typeof window === "undefined") {
     return "";
   }

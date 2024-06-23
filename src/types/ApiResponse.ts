@@ -7,6 +7,7 @@ export interface ILocation {
   updatedAt: string;
 }
 
+// car type
 export interface ICar {
   _id: string;
   title: string;
@@ -15,7 +16,14 @@ export interface ICar {
   imageUrl: string;
   isAvailable: boolean;
   featured: boolean;
-  category: "medium" | "premium" | "small" | "large" | "SUVs" | "People Carrier" | "Estate";
+  category:
+    | "medium"
+    | "premium"
+    | "small"
+    | "large"
+    | "SUVs"
+    | "People Carrier"
+    | "Estate";
   seats: number;
   bags: number;
   dors: number;

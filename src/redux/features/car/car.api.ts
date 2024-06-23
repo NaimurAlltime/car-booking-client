@@ -22,19 +22,21 @@ export const carApi = baseApi.injectEndpoints({
       },
       providesTags: [tagTypes.car],
     }),
-    getSingleCar: builder.query<{ car: ICar }, { id: string; params?: IQuery }>({
-      query: (arg) => ({
-        url: car_url + "/" + arg?.id,
-        method: "GET",
-        params: arg?.params,
-      }),
-      transformResponse: (response: ICar) => {
-        return {
-          car: response,
-        };
-      },
-      providesTags: [tagTypes.car],
-    }),
+    getSingleCar: builder.query<{ car: ICar }, { id: string; params?: IQuery }>(
+      {
+        query: (arg) => ({
+          url: car_url + "/" + arg?.id,
+          method: "GET",
+          params: arg?.params,
+        }),
+        transformResponse: (response: ICar) => {
+          return {
+            car: response,
+          };
+        },
+        providesTags: [tagTypes.car],
+      }
+    ),
     // form data will be {payload: json, image: file}
     addCar: builder.mutation({
       query: (arg: { data: FormData }) => ({
@@ -64,7 +66,11 @@ export const carApi = baseApi.injectEndpoints({
   }),
 });
 
-export const getCars = async ({ params }: { params?: IQuery }): Promise<{ cars: ICar[]; meta: IMeta }> => {
+export const getCars = async ({
+  params,
+}: {
+  params?: IQuery;
+}): Promise<{ cars: ICar[]; meta: IMeta }> => {
   const result = await axiosInstance({
     url: car_url,
     method: "GET",
@@ -77,4 +83,10 @@ export const getCars = async ({ params }: { params?: IQuery }): Promise<{ cars: 
   };
 };
 
-export const { useAddCarMutation, useDeleteCarMutation, useGetCarsQuery, useGetSingleCarQuery, useUpdateCarMutation } = carApi;
+export const {
+  useAddCarMutation,
+  useDeleteCarMutation,
+  useGetCarsQuery,
+  useGetSingleCarQuery,
+  useUpdateCarMutation,
+} = carApi;

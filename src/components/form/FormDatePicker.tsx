@@ -16,7 +16,8 @@ const FormDatePicker = ({ name, label, onChange, size = "small" }: Props) => {
   const { control, setValue } = useFormContext();
 
   const handleOnChange: DatePickerProps["onChange"] = (date, dateString) => {
-    onChange ? onChange(date, dateString) : null;
+
+    onChange ? onChange(date, dateString as string) : null;
     setValue(name, date);
   };
 

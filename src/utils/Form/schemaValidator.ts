@@ -1,7 +1,4 @@
-export const getErrorMessageByPropertyName = (
-  obj: Record<string, any>,
-  propertyPath: string
-) => {
+export const getErrorMessageByPropertyName = (obj: Record<string, any>, propertyPath: string) => {
   // let obj = errors
   // let propertyPath = "admin.name.firstName"
   // let propertyPath = "admin.name.lastName"
@@ -11,7 +8,6 @@ export const getErrorMessageByPropertyName = (
   // ["admin","name","lastName"]
   let value = obj;
 
-  // form validaion
   for (let prop of properties) {
     if (value[prop]) {
       value = value[prop];

@@ -25,7 +25,7 @@ const Form = ({ children, submitHandler, defaultValues, resolver }: FormProps) =
   const onSubmit = async (data: any) => {
     try {
       await submitHandler(data);
-      reset();
+      // reset();
     } catch (error) {}
   };
 

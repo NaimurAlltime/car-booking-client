@@ -22,7 +22,7 @@ const items: MenuProps["items"] = [
     label: (
       <div className="flex gap-5 ">
         <Image
-          src="/svgs/en-flag.svg"
+          src="/svgs/france-flag.svg"
           alt=""
           width={40}
           height={40}
@@ -36,7 +36,7 @@ const items: MenuProps["items"] = [
 
 const HeaderDropdown = () => {
   return (
-    <div>
+    <div className="flex gap-5">
       <Dropdown
         menu={{ items }}
         placement="bottomRight"
@@ -45,15 +45,16 @@ const HeaderDropdown = () => {
         className="gap-5"
         rootClassName="z-40"
       >
-        <Button type="text">
+        <div className="flex gap-5">
           <Image
             src="/svgs/en-flag.svg"
             alt=""
             width={40}
             height={40}
-            className="rounded-sm cursor-pointer"
+            className="rounded-sm"
           />
-        </Button>
+          <span className="">EN</span>
+        </div>
       </Dropdown>
     </div>
   );

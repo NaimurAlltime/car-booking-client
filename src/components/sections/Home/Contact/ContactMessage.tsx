@@ -104,9 +104,9 @@ const ContactMessage = () => {
             />
           </div>
           <div>
-            <Button type="primary" htmlType="submit" size="large">
+            <button className="bg-[#3a88cb] hover:bg-blue-900 text-white rounded-md px-3.5 py-1.5">
               Submit
-            </Button>
+            </button>
           </div>
         </div>
       </Form>

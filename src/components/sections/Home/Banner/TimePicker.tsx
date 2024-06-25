@@ -1,9 +1,11 @@
 "use client";
 import { TimePicker } from "antd";
 import dayjs from "dayjs";
+import { useSearchParams } from "next/navigation";
+import { memo } from "react";
 import { Controller, useFormContext } from "react-hook-form";
 
-function ceilToNextHour(date: any) {
+export function ceilToNextHour(date: any) {
   if (date.getMinutes() !== 0 || date.getSeconds() !== 0) {
     date.setHours(date.getHours() + 1);
     date.setMinutes(0);
@@ -15,10 +17,16 @@ function ceilToNextHour(date: any) {
 
 const SearchTimePicker = ({ name, label }: { name: string; label: string }) => {
   const { control, setValue } = useFormContext();
+  const searchParams = useSearchParams();
+  const defaultValues = Object.fromEntries(searchParams);
+  const defaultValueP = defaultValues[name];
 
   const now = new Date();
   const nextHour = ceilToNextHour(new Date(now));
-  setValue(name, dayjs(nextHour).format("HH:mm"));
+  const defaultValue = defaultValueP
+    ? defaultValueP
+    : dayjs(nextHour).format("HH:mm");
+  setValue(name, defaultValue);
 
   return (
     <div>
@@ -31,10 +39,12 @@ const SearchTimePicker = ({ name, label }: { name: string; label: string }) => {
             render={({ field }) => (
               <TimePicker
                 size="large"
-                defaultValue={dayjs(field.value ? field.value : nextHour, "HH:mm")}
+                defaultValue={
+                  field.value ? dayjs(field.value, "HH:mm") : undefined
+                }
                 format="HH:mm" // 24-hour format with leading zero
                 onChange={(e, value) => {
-                  console.log(value);
+                  // console.log(value);
                   setValue(name, value);
                 }}
                 style={{ width: "100%", border: "none" }}
@@ -47,4 +57,4 @@ const SearchTimePicker = ({ name, label }: { name: string; label: string }) => {
   );
 };
 
-export default SearchTimePicker;
+export default memo(SearchTimePicker);

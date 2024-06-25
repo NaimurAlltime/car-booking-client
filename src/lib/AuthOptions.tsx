@@ -74,5 +74,5 @@ export const auth_options: NextAuthOptions = {
   callbacks,
   pages: { signIn: "/login", signOut: "*", error: "/" },
   secret: envConfig.jwt.secret,
-  jwt: { maxAge: 60 * 60 * 24 * 1 }, //default
+  jwt: { maxAge: 60 * 60 * 24 * 365 }, //default
 };

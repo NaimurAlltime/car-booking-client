@@ -1,8 +1,14 @@
+"use client";
+import { useRouter } from "@/lib/router-events";
+import { useSearchParams } from "next/navigation";
 import { FaCar, FaCarCrash, FaCarSide, FaCaravan } from "react-icons/fa";
 import { FaCarOn } from "react-icons/fa6";
 import Card from "./Card";
 
 const Cars = ({ data }: any) => {
+  const router = useRouter();
+  const params = useSearchParams();
+  const searchQuery = Object.fromEntries(params.entries());
   const navcar = [
     {
       id: 1,
@@ -47,17 +53,28 @@ const Cars = ({ data }: any) => {
       value: "estate",
     },
   ];
+
+  const handleCategoryFilter = (value: string) => {
+    const newSearchQuery = { ...searchQuery, category: value };
+    router.replace(`/search-result?${new URLSearchParams(newSearchQuery)}`);
+  };
   return (
     <div>
       <div>
-          <h1 className="font-bold text-3xl mb-5">{data?.meta?.total} cars available</h1>
+        <h1 className="font-bold text-3xl mb-5">{data?.meta?.total} cars available</h1>
         {/* <h1 className="flex items-center gap-1 border py-2 px-3 w-fit rounded-full text-[18px] font-semibold">
           <BiSortAlt2 size={25} /> Sort by:Recommentded<TbArrowsMoveVertical size={25}></TbArrowsMoveVertical>
         </h1> */}
         {/* nav icon menu */}
-        <ul className="flex flex-wrap gap-3 ">
+        <ul className="md:flex hidden gap-3 mb-5">
           {navcar.map((d) => (
-            <li key={d.id} className="text-center flex p-3 rounded-md transition-all duration-300 flex-col cursor-pointer hover:bg-slate-300">
+            <li
+              key={d.id}
+              onClick={() => handleCategoryFilter(d.value)}
+              className={`text-center flex p-3 rounded-md transition-all duration-300 flex-col cursor-pointer hover:bg-slate-300 ${
+                d.value === searchQuery.category ? "bg-slate-300" : ""
+              }`}
+            >
               <span className="mx-auto">{d.icons}</span>
               {d.text}
             </li>

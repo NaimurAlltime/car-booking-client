@@ -25,13 +25,15 @@ const CreateCarPage = () => {
     formData.append("image", file as Blob);
     formData.append("payload", payload);
 
+    
+
     try {
       message.loading("Adding...");
       const res = await addCar({ data: formData }).unwrap();
       if (!!res) {
-        message.destroy();
+        // message.destroy();
         message.success("Your request to add car has been sent successful");
-        router.push("/admin/manage-cars");
+        // router.push("/admin/manage-cars");
       }
     } catch (err: any) {
       message.destroy();
@@ -42,23 +44,14 @@ const CreateCarPage = () => {
     <div>
       <ActionBar title="Create Location">
         <div className=" ">
-          <BreadCrumb
-            items={[
-              { label: "Management" },
-              { label: "Manage Location" },
-              { label: "Add" },
-            ]}
-          />
+          <BreadCrumb items={[{ label: "Management" }, { label: "Manage Location" }, { label: "Add" }]} />
         </div>
       </ActionBar>
-      <Form
-        submitHandler={submitHandler}
-        resolver={zodResolver(addCarValidation)}
-      >
+      <Form submitHandler={submitHandler} resolver={zodResolver(addCarValidation)}>
         <CarForm />
         <div style={{ marginTop: 24 }}>
           <Button type="primary" htmlType="submit">
-            Create Car
+            Create
           </Button>
         </div>
       </Form>

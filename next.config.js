@@ -9,9 +9,9 @@ const withPWA = require("next-pwa")({
 
 const nextConfig = withPWA({
   images: {
-    domains: ["res.cloudinary.com"],
+    domains: ["res.cloudinary.com", "i.ibb.co", "img.freepik.com"],
   },
-  output: 'standalone'
+  output: "standalone",
 });
 
 module.exports = nextConfig;

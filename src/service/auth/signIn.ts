@@ -1,14 +1,7 @@
 import { login_credential } from "@/constants/credentialId";
 import { signIn as nextAuthSignIn } from "next-auth/react";
 
-// sign in
-export const signIn = async ({
-  email,
-  password,
-}: {
-  email: string;
-  password: string;
-}) => {
+export const signIn = async ({ email, password }: { email: string; password: string }) => {
   return await nextAuthSignIn(login_credential, {
     email: email,
     password: password,

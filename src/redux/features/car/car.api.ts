@@ -83,6 +83,24 @@ export const getCars = async ({
   };
 };
 
+export const getSingleCar = async ({
+  id,
+  params,
+}: {
+  id: string;
+  params?: IQuery;
+}): Promise<{ car: ICar }> => {
+  const result = await axiosInstance({
+    url: car_url + "/" + id,
+    method: "GET",
+    params,
+  });
+  // console.log(result);
+  return {
+    car: result?.data,
+  };
+};
+
 export const {
   useAddCarMutation,
   useDeleteCarMutation,

@@ -61,14 +61,6 @@ const Footer = () => {
                     href="/"
                     className="inline-flex gap-x-2 text-gray-400 hover:text-gray-200"
                   >
-                    Premium Memberships
-                  </Link>
-                </p>
-                <p>
-                  <Link
-                    href="/"
-                    className="inline-flex gap-x-2 text-gray-400 hover:text-gray-200"
-                  >
                     Customer Support
                   </Link>
                 </p>
@@ -77,7 +69,7 @@ const Footer = () => {
                     href="/"
                     className="inline-flex gap-x-2 text-gray-400 hover:text-gray-200"
                   >
-                    Partner Search
+                    Car Search
                   </Link>
                 </p>
               </div>
@@ -110,14 +102,6 @@ const Footer = () => {
                     className="inline-flex gap-x-2 text-gray-400 hover:text-gray-200"
                   >
                     Contact us
-                  </Link>
-                </p>
-                <p>
-                  <Link
-                    className="inline-flex gap-x-2 text-gray-400 hover:text-gray-200"
-                    href="/"
-                  >
-                    Blog
                   </Link>
                 </p>
                 <p>
@@ -170,14 +154,6 @@ const Footer = () => {
                     Report Misuse
                   </Link>
                 </p>
-                <p>
-                  <Link
-                    href="/"
-                    className="inline-flex gap-x-2 text-gray-400 hover:text-gray-200"
-                  >
-                    Car Search
-                  </Link>
-                </p>
               </div>
             </div>
             {/* <!-- End Col --> */}
@@ -192,15 +168,6 @@ const Footer = () => {
                     className="inline-flex gap-x-2 text-gray-400 hover:text-gray-200"
                   >
                     Car Booking Center
-                  </Link>
-                </p>
-
-                <p>
-                  <Link
-                    href="/#"
-                    className="inline-flex gap-x-2 text-gray-400 hover:text-gray-200"
-                  >
-                    Success Stories
                   </Link>
                 </p>
 

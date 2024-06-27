@@ -14,6 +14,7 @@ import { IoBagOutline, IoCheckmarkOutline } from "react-icons/io5";
 import { MdOutlineEmail } from "react-icons/md";
 import { PiCassetteTapeThin } from "react-icons/pi";
 import { TbAirConditioning, TbManualGearbox } from "react-icons/tb";
+import { IoLogoEuro } from "react-icons/io";
 
 const Card = ({ car }: { car: ICar }) => {
   const [showInfo, setShowInfo] = useState(false);
@@ -139,8 +140,8 @@ const Card = ({ car }: { car: ICar }) => {
                 <span>
                   <sub>Price for {diff} days</sub>
                 </span>
-                <h1 className="text-2xl font-semibold text-gray-700 mr-4">
-                  {car?.rentPerDay * diff} MAD/Total
+                <h1 className="text-2xl font-semibold text-gray-700 mr-4 flex gap-1">
+                  {car?.rentPerDay * diff} Euro/Total
                 </h1>
               </div>
               {/* <div>

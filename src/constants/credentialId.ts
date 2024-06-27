@@ -1,1 +1,1 @@
-export const login_credential : string = "Login-With-Credentials"
+export const login_credential: string = "6676760d548964825fa289f3";

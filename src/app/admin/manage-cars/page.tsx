@@ -4,7 +4,11 @@ import BreadCrumb from "@/components/common/Breadcrumb";
 import Table from "@/components/common/Table";
 import { useDebounced } from "@/hooks/useDebounced";
 import { Link, useRouter } from "@/lib/router-events";
-import { getCars, useDeleteCarMutation, useGetCarsQuery } from "@/redux/features/car/car.api";
+import {
+  getCars,
+  useDeleteCarMutation,
+  useGetCarsQuery,
+} from "@/redux/features/car/car.api";
 import { ICar } from "@/types/ApiResponse";
 import { Button, Input, Modal, TableColumnProps, message } from "antd";
 import { useSession } from "next-auth/react";
@@ -27,7 +31,12 @@ const ManageCarPage = () => {
 
   query["limit"] = size;
   query["page"] = page;
-  query["sort"] = !!sortBy && !!sortOrder && sortOrder === "asc" ? sortBy : sortOrder === "desc" ? `-${sortBy}` : undefined;
+  query["sort"] =
+    !!sortBy && !!sortOrder && sortOrder === "asc"
+      ? sortBy
+      : sortOrder === "desc"
+      ? `-${sortBy}`
+      : undefined;
 
   const debouncedTerm = useDebounced({
     searchQuery: searchTerm,
@@ -74,10 +83,16 @@ const ManageCarPage = () => {
       render: function (data: string) {
         return (
           <div className="flex justify-center items-center gap-5">
-            <Button size="small" onClick={() => router.push(`/admin/manage-cars/details/${data}`)}>
+            <Button
+              size="small"
+              onClick={() => router.push(`/admin/manage-cars/details/${data}`)}
+            >
               view
             </Button>
-            <Button size="small" onClick={() => router.push(`/admin/manage-cars/edit/${data}`)}>
+            <Button
+              size="small"
+              onClick={() => router.push(`/admin/manage-cars/edit/${data}`)}
+            >
               edit
             </Button>
             <Button size="small" onClick={() => showDeleteCarModal(data)}>
@@ -163,18 +178,31 @@ const ManageCarPage = () => {
           </Link>
 
           {csvJson.length > 0 ? (
-            <CSVDownloader type={Type.Link} filename={"car"} bom={true} data={csvJson}>
+            <CSVDownloader
+              type={Type.Link}
+              filename={"car"}
+              bom={true}
+              data={csvJson}
+            >
               <Button style={{ margin: "0px 5px" }} type="primary">
                 Download CSV
               </Button>
             </CSVDownloader>
           ) : (
-            <Button style={{ margin: "0px 5px" }} type="primary" onClick={generateCSV}>
+            <Button
+              style={{ margin: "0px 5px" }}
+              type="primary"
+              onClick={generateCSV}
+            >
               Generate CSV
             </Button>
           )}
           {(!!sortBy || !!sortOrder || !!searchTerm) && (
-            <Button style={{ margin: "0px 5px" }} type="primary" onClick={resetFilters}>
+            <Button
+              style={{ margin: "0px 5px" }}
+              type="primary"
+              onClick={resetFilters}
+            >
               <AiOutlineReload />
             </Button>
           )}

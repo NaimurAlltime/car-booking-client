@@ -22,7 +22,10 @@ const providers: Provider[] = [
 
         const response = await loginWithCredential({ email, password });
 
-        const verifiedToken: any = jwtHelpers.verifyToken(response?.data?.accessToken, envConfig.jwt.secret);
+        const verifiedToken: any = jwtHelpers.verifyToken(
+          response?.data?.accessToken,
+          envConfig.jwt.secret
+        );
         // If no error and we have user data, return it
         if (response?.data?.accessToken && verifiedToken) {
           return {

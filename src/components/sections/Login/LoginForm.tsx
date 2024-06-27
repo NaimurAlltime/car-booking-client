@@ -14,7 +14,7 @@ const LoginForm = () => {
   const { data: session } = useSession();
   const router = useRouter();
   const [error, setError] = useState<boolean>(false);
-  const submitHandler = async (data: ILoginCredentials) => {
+  const submitHandler = async (data: any) => {
     message.loading("Login.....");
     try {
       const res = await signIn({
@@ -32,6 +32,7 @@ const LoginForm = () => {
       }
     } catch (err: any) {
       setError(true);
+      console.log("error", err);
       message.destroy();
       message.warning("Failed to Login! try again");
     }
@@ -50,18 +51,29 @@ const LoginForm = () => {
           <Card>
             <h1 className="text-[2rem] mb-5 text-primary">Login</h1>
 
-            <Form submitHandler={submitHandler} resolver={zodResolver(loginValidation)}>
+            <Form
+              submitHandler={submitHandler}
+              resolver={zodResolver(loginValidation)}
+            >
               <div className="flex flex-col gap-4">
                 <div>
                   <FormInput name="email" required label="Email" size="large" />
                 </div>
                 <div>
-                  <FormInput name="password" required type="password" label="Password" size="large" />
+                  <FormInput
+                    name="password"
+                    required
+                    type="password"
+                    label="Password"
+                    size="large"
+                  />
                 </div>
 
                 {error && (
                   <p className="text-center">
-                    <span className="text-red-500 underline ">Email or Password is wrong, please try again</span>
+                    <span className="text-red-500 underline ">
+                      Email or Password is wrong, please try again
+                    </span>
                   </p>
                 )}
 

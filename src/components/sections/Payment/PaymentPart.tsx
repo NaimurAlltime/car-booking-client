@@ -1,85 +1,61 @@
-import React from "react";
-import { AiTwotoneIdcard } from "react-icons/ai";
-import { FaRegQuestionCircle } from "react-icons/fa";
+"use client";
+import { useState } from "react";
+import axios from "axios";
+import Link from "next/link";
 
 const PaymentPart = () => {
+  const [amount, setAmount] = useState("");
+  const [currency, setCurrency] = useState("usd");
+  const [description, setDescription] = useState("");
+  const [source, setSource] = useState("");
+
+  const handlePayment = async () => {
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/api/v1/payments/pay",
+        {
+          amount: parseFloat(amount) * 100, // Stripe expects the amount in cents
+          currency,
+          description,
+          source,
+        }
+      );
+      console.log(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
-    <div className="border-[1.5px] p-4 rounded-lg my-5">
-      <div className="lg:w-2/3 ">
-        <h2 className="text-2xl font-bold mb-4">How would you like to pay?</h2>
-        <form>
-          <div className="mb-4">
-            <label htmlFor="firstName" className="block text-sm font-semibold">
-              Cardholder&apos;s Name <span className="text-red-500">*</span>
-            </label>
-            <input
-              type="text"
-              id="firstName"
-              className="mt-1 p-2 w-full border rounded-md"
-              required
-            />
-          </div>
-          <div className="mb-4 relative">
-            <label htmlFor="firstName" className="block text-sm font-semibold">
-              Card Number<span className="text-red-500"> *</span>
-            </label>
-            <div className="relative">
-              <AiTwotoneIdcard className="absolute top-6 transform -translate-y-1/2 left-2 text-gray-500 text-2xl" />
-              <input
-                type="text"
-                id="firstName"
-                className="mt-1 p-2 ps-10 w-full border rounded-md"
-                placeholder="Enter card number"
-                required
-              />
-            </div>
-          </div>
-          <div className="flex items-center gap-3 ">
-            <div className="mb-4 w-full">
-              <label
-                htmlFor="firstName"
-                className="block text-sm font-semibold"
-              >
-                Expire Date<span className="text-red-500"> *</span>
-              </label>
-              <div className="">
-                <input
-                  type="text"
-                  id="firstName"
-                  className="mt-1 p-2 w-full border rounded-md"
-                  placeholder="MM / YY"
-                  required
-                />
-              </div>
-            </div>
-            <div className="mb-4 relative w-full">
-              <div className="flex items-center justify-between">
-                <label
-                  htmlFor="firstName"
-                  className="block text-sm font-semibold"
-                >
-                  CVC<span className="text-red-500"> *</span>
-                </label>
-                <label
-                  htmlFor="firstName"
-                  className="block text-sm font-semibold"
-                >
-                  <FaRegQuestionCircle />
-                </label>
-              </div>
-              <div className="relative">
-                <AiTwotoneIdcard className="absolute top-6 transform -translate-y-1/2 left-2 text-gray-500 text-2xl" />
-                <input
-                  type="text"
-                  id="firstName"
-                  className="mt-1 p-2 ps-10 w-full border rounded-md"
-                  required
-                />
-              </div>
-            </div>
-          </div>
-        </form>
-      </div>
+    <div>
+      <h1>Stripe Payment</h1>
+      <input
+        type="number"
+        placeholder="Amount"
+        value={amount}
+        onChange={(e) => setAmount(e.target.value)}
+      />
+      <input
+        type="text"
+        placeholder="Currency"
+        value={currency}
+        onChange={(e) => setCurrency(e.target.value)}
+      />
+      <input
+        type="text"
+        placeholder="Description"
+        value={description}
+        onChange={(e) => setDescription(e.target.value)}
+      />
+      <input
+        type="text"
+        placeholder="Source"
+        value={source}
+        onChange={(e) => setSource(e.target.value)}
+      />
+      <button onClick={handlePayment}>Pay</button>
+      <br />
+      {/* <Link href="/history">View Payment Histor</Link> */}
     </div>
   );
 };

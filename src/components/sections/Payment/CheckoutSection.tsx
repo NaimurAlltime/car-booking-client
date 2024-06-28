@@ -1,3 +1,4 @@
+"use client";
 import { getSingleCar } from "@/redux/features/car/car.api";
 import { BsFillFuelPumpFill, BsSpeedometer2 } from "react-icons/bs";
 import { FaRegCircleCheck, FaRegUser } from "react-icons/fa6";
@@ -6,10 +7,19 @@ import { PiBagSimpleDuotone } from "react-icons/pi";
 import { RxTimer } from "react-icons/rx";
 import BillingAddress from "./BillingAddress";
 import DriversDetails from "./DriversDetails";
-import PaymentPart from "./PaymentPart";
 import Rightside from "./Rightside";
 import TermsCondition from "./TermsCondition";
+import { Elements } from "@stripe/react-stripe-js";
 import dayjs from "dayjs";
+import { loadStripe } from "@stripe/stripe-js";
+import PaymentPart from "./PaymentPart";
+
+// TODO publicable key
+
+// key : pk_test_51NISv5CvtirLXdOoAJfNNhTLw1xHkqjyYa4znodKsBDc5RLMgFcbFJMOSbzDh25l5ABmjOlQw7jjvAyu5ZVIZ8pN00fBZ7yaid
+const key =
+  "pk_test_51NG2obIP8PH7CQMuYWy7GZBJyXhKmKFVuM1cK5xzVDspG4GA93t6rAa9fsas1uubXSTAX81bgrD2aP38x3UoLobk009iEr7oyb";
+const stripePromise = loadStripe(key);
 
 const CheckoutSection = async ({
   carId,
@@ -113,8 +123,11 @@ const CheckoutSection = async ({
           <DriversDetails />
           {/* <ProtectionPart /> */}
           <BillingAddress />
-          <PaymentPart />
-          <TermsCondition />
+          <Elements stripe={stripePromise}>
+            <PaymentPart />
+          </Elements>
+
+          {/* <TermsCondition /> */}
         </div>
         <div className="lg:w-[30%]  h-full sticky lg:top-20 top-10 lg:mt-8">
           <Rightside price={car?.rentPerDay} dayDiff={diff} />

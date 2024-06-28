@@ -13,6 +13,7 @@ import CarChoice from "./CarDetails/LeftSide/CarChoice";
 import PriceDetails from "./CarDetails/LeftSide/PriceDetails";
 import ExtraDetails from "./CarDetails/LeftSide/ExtraDetails";
 import ProtectionTable from "./CarDetails/ProtectionTable";
+import Rightside from "./Rightside";
 
 const ProtectionSection = async ({
   carId,
@@ -31,6 +32,7 @@ const ProtectionSection = async ({
   const pickDate = dayjs(queryParams?.pickDate);
   const returnDate = dayjs(queryParams?.returnDate);
   const diff = returnDate.diff(pickDate, "day");
+  // console.log("diff", diff);
   return (
     <div className="mt-5">
       {/* <div className="mt-8">
@@ -120,7 +122,7 @@ const ProtectionSection = async ({
         </div>
         <div className="lg:w-[30%]  h-full sticky lg:top-20 top-10 lg:mt-8">
           <PickupLocation />
-          <RightsideBottom price={car?.rentPerDay} dayDiff={diff} />
+          <Rightside price={car?.rentPerDay} dayDiff={diff} />
         </div>
       </div>
       {/* <div className="text-center mt-5 ">

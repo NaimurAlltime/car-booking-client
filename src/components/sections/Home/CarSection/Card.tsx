@@ -84,7 +84,7 @@ const Card = ({ card }: any) => {
       {/* bg-[#F47322] [#00a2ff] */}
       <div className="text-center bg-[#00a2ff] hover:bg-blue-900 w-full my-5 text-white rounded-md py-2 text-xl font-semibold">
         <h3>from</h3>
-        <h2>{mad} mad/day</h2>
+        <h2>{mad} Euro/day</h2>
       </div>
 
       <div className="text-center">

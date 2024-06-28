@@ -2,7 +2,7 @@ export const carDetialsData = [
   {
     title: "Renault Clio 5 ",
     subTitle: "Renault Clio 5  or Similar",
-    mad: "220",
+    mad: "45",
     seats: 4,
     bags: 2,
     door: 4,
@@ -14,7 +14,7 @@ export const carDetialsData = [
   {
     title: "Cetroen C-Elysee ",
     subTitle: "Cetroen C-Elysee  or Similar",
-    mad: "220",
+    mad: "45",
     seats: 4,
     bags: 2,
     door: 4,
@@ -27,7 +27,7 @@ export const carDetialsData = [
   {
     title: "Kia Seltos",
     subTitle: "Kia Seltos or Similar",
-    mad: "220",
+    mad: "65",
     seats: 4,
     bags: 2,
     door: 4,
@@ -39,7 +39,7 @@ export const carDetialsData = [
   {
     title: "Volkswagen T Roc",
     subTitle: "Volkswagen or Similar",
-    mad: "220",
+    mad: "75",
     seats: 4,
     bags: 2,
     door: 4,
@@ -51,7 +51,7 @@ export const carDetialsData = [
   {
     title: "Toyota Fortuner",
     subTitle: "Toyota Fortuner or Similar",
-    mad: "220",
+    mad: "145",
     seats: 4,
     bags: 2,
     door: 4,
@@ -63,7 +63,7 @@ export const carDetialsData = [
   {
     title: "Toyota Prado",
     subTitle: "Toyota Prado or Similar",
-    mad: "220",
+    mad: "150",
     seats: 4,
     bags: 2,
     door: 4,

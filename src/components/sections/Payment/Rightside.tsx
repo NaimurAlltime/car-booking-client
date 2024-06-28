@@ -1,16 +1,18 @@
 import { IoCheckmarkOutline } from "react-icons/io5";
 
 const Rightside = ({ price, dayDiff }: { price: number; dayDiff: number }) => {
+  // console.log("new price", price, dayDiff);
   return (
     <div className="mt-4">
       <div className="border-[1.5px] p-4 rounded-lg">
         <h2 className="text-xl font-bold">Car price breakdown</h2>
         <h3 className="flex items-center justify-between py-5">
-          <span>Car hire charge</span> <span>DH {price}</span>
+          <span>Car hire charge</span> <span>Euro {price}</span>
         </h3>
         <hr />
         <h3 className="flex items-center justify-between py-5">
-          <span>Price for {dayDiff} days:</span> <span>DH {price * dayDiff}</span>
+          <span>Price for {dayDiff || 3} days:</span>{" "}
+          <span>Euro {price * 3}</span>
         </h3>
       </div>
       <div className="border-[1.5px] p-4 rounded-lg my-5">

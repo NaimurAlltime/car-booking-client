@@ -1,61 +1,80 @@
 "use client";
+import { useStripe, CardElement, useElements } from "@stripe/react-stripe-js";
 import { useState } from "react";
-import axios from "axios";
-import Link from "next/link";
+
+import Swal from "sweetalert2";
+import { useRouter } from "next/navigation";
+import { message } from "antd";
 
 const PaymentPart = () => {
-  const [amount, setAmount] = useState("");
-  const [currency, setCurrency] = useState("usd");
-  const [description, setDescription] = useState("");
-  const [source, setSource] = useState("");
+  const [cardError, setCardError] = useState<any>("");
+  const [paymentId, setPaymentId] = useState<string>("");
+  const stripe = useStripe();
+  const elements = useElements();
 
-  const handlePayment = async () => {
-    try {
-      const response = await axios.post(
-        "http://localhost:5000/api/v1/payments/pay",
-        {
-          amount: parseFloat(amount) * 100, // Stripe expects the amount in cents
-          currency,
-          description,
-          source,
-        }
-      );
-      console.log(response.data);
-    } catch (error) {
-      console.error(error);
+  // router use
+  const router = useRouter();
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setPaymentId("");
+    setCardError("");
+
+    if (!stripe || !elements) {
+      return;
+    }
+
+    // const result = await stripe.createToken(elements.getElement(CardElement));
+
+    const cardElement = elements.getElement(CardElement);
+    if (!cardElement) {
+      return;
+    }
+
+    const { error, paymentMethod } = await stripe.createPaymentMethod({
+      type: "card",
+      card: cardElement,
+    });
+    // const  = await stripe.createPaymentMethod({
+    //   type: "card",
+    //   card
+    // })
+
+    if (error) {
+      console.log("error", error);
+      const err = error.message;
+      setCardError(err);
+    } else {
+      if (paymentMethod.id) {
+        message.success("Your Payment is successfull Done");
+        setPaymentId(paymentMethod.id);
+        router.push(`/`);
+      }
+      console.log("payment method", paymentMethod);
     }
   };
-
   return (
-    <div>
-      <h1>Stripe Payment</h1>
-      <input
-        type="number"
-        placeholder="Amount"
-        value={amount}
-        onChange={(e) => setAmount(e.target.value)}
-      />
-      <input
-        type="text"
-        placeholder="Currency"
-        value={currency}
-        onChange={(e) => setCurrency(e.target.value)}
-      />
-      <input
-        type="text"
-        placeholder="Description"
-        value={description}
-        onChange={(e) => setDescription(e.target.value)}
-      />
-      <input
-        type="text"
-        placeholder="Source"
-        value={source}
-        onChange={(e) => setSource(e.target.value)}
-      />
-      <button onClick={handlePayment}>Pay</button>
-      <br />
-      {/* <Link href="/history">View Payment Histor</Link> */}
+    <div className="md:w-2/3 w-full h-48 mt-6 mx-auto relative">
+      <form onSubmit={handleSubmit}>
+        <div className="">
+          <CardElement />
+        </div>
+
+        <div className="text-center mt-5 ">
+          <button
+            className=" w-full lg:w-36 text-lg font-bold px-5 py-3 rounded-md bg-green-600 hover:bg-green-700 text-white"
+            type="submit"
+          >
+            Book Now
+          </button>
+        </div>
+      </form>
+      {/* {paymentId && (
+        <p className=" text-lg mt-6">
+          your payment id: <span className="text-green-500">({paymentId})</span>
+        </p>
+      )} */}
+      {cardError && <p className="text-red-500 mt-6 ">{cardError}</p>}
     </div>
   );
 };

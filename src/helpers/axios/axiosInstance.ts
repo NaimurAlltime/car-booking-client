@@ -5,7 +5,8 @@ import axios from "axios";
 import { envConfig } from "../config/envConfig";
 
 const axiosInstance = axios.create({
-  baseURL: envConfig.backendUrl,
+  // baseURL: envConfig.backendUrl,
+  baseURL: "https://car-rent-server-five.vercel.app/api/v1",
 });
 axiosInstance.defaults.headers.post["Content-Type"] = "application/json";
 axiosInstance.defaults.headers["Accept"] = "application/json";

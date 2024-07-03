@@ -6,11 +6,17 @@ import { ReactNode } from "react";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Car Rent",
+  title: "Car Booking",
   description: "",
 };
 
-export default function RootLayout({ children, session }: { children: ReactNode; session: Session }) {
+export default function RootLayout({
+  children,
+  session,
+}: {
+  children: ReactNode;
+  session: Session;
+}) {
   return (
     <html lang="en">
       <body>
